@@ -7,8 +7,7 @@ export default function StudentInfo() {
             <p>Name:Ella Elogbamien</p>
             <p>
                 Github Repository:
-                <link href="https://github.com/EllaLouis/cprg306-assignments">
-                </link>
+                <Link href="https://github.com/EllaLouis/cprg306-assignments">Ella's Github</Link>
             </p>
         </div>
     )
