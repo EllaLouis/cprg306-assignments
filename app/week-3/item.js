@@ -1,3 +1,7 @@
+import link from 'next/link';
+import React from 'react';
+import itemlist from './item-list';
+
 export default function item() { }
 const Item = ({ name, quantity, category }) => {
     return (
