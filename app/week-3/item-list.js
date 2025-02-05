@@ -75,7 +75,7 @@ export default function ItemList() {
     const items = [item1, item2, item3, item4, item5, item6, item7, item8, item9, item10, item11, item12];
 
     return (
-        <ul className="max-w-md mx-auto bg-white shadow-lg rounded-lg p-4">
+        <ul className="max-w-md mx-auto bg-blue shadow-lg rounded-lg p-4">
             {items.map((item, index) => (
                 <Item
                     key={index}
