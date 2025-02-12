@@ -16,7 +16,7 @@ export default function Page() {
 
 
     return (
-        <div className="flex flex-col items-center justify-center min-h-screen bg-gray-800 p-6">
+        <div className="flex flex-col items-center justify-center min-h-screen bg-gray-800 text-white p-6">
             <NewItem />
             <div className="text-2xl font-semibold my-4">{quantity}</div>
 
