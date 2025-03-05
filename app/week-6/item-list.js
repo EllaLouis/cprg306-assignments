@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useState } from "react";
 import Item from "./item.js";
 import items from "./items.json";
