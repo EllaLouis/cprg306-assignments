@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 
 export default function NewItem({ quantity }) {
   const [name, setName] = useState("");
+  const [quantity, setQuantity] = useState("");
   const [category, setCategory] = useState("produce");
 
   const handleSubmit = (e) => {
