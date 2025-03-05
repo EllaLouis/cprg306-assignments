@@ -3,6 +3,10 @@ export default function Item({ name, category }) {
 };
 
 const Item = ({ name, quantity, category }) => {
+
+    { id: 1, name; "Apple", category; "Fruit" }
+    { id: 2, name; "Carrot", category; "Vegetable" }
+
     return (
         <li className="p-4 border-b border-gray-300 flex justify-left">
             <div>
