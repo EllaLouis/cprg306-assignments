@@ -1,7 +1,7 @@
 export default function Item({ name, category }) {
     return <li>{name} - {category}</li>;
-}
-;
+};
+
 const Item = ({ name, quantity, category }) => {
     return (
         <li className="p-4 border-b border-gray-300 flex justify-left">
