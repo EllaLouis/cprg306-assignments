@@ -29,7 +29,7 @@ export default function ShoppingList() {
 
     return (
         <div className="p-4">
-            <h1 className="text-xl font-bold mb-4">Item List</h1>
+            <h1 className="text-xl font-bold mb-4">Shopping List</h1>
 
             {/* Sorting Buttons */}
             <div className="space-x-2 mb-4">
