@@ -2,11 +2,14 @@
 import { useState } from "react";
 import Item from "./item";
 
-export default function ItemList({ items }) {
+export default function ItemList({ items = [] }) {
     const [sortBy, setSortBy] = useState("name");
 
-    let sortedItems;
+    if (!Array.isArray(items) || items.length === 0) {
+        return <p className="p-4">Your shopping list is empty.</p>;
+    }
 
+    let sortedItems;
     if (sortBy === "group") {
         const grouped = items.reduce((acc, item) => {
             acc[item.category] = acc[item.category] || [];
@@ -21,7 +24,6 @@ export default function ItemList({ items }) {
                 items: [...items].sort((a, b) => a.name.localeCompare(b.name)),
             }));
     } else {
-
         sortedItems = [...items].sort((a, b) => a[sortBy].localeCompare(b[sortBy]));
     }
 

@@ -1,69 +1,27 @@
 "use client";
+import { useState, useEffect } from "react";
+import NewItem from "./new-item"; // Import NewItem component
+import ItemList from "./item-list"; // Import ItemList component
+import itemsData from "./items.json"; // Import items.json as itemsData
 
-import React, { useState } from "react";
+export default function Page() {
+    const [items, setItems] = useState([]);
 
-export default function NewItem({ onAddItem }) {
-    const [name, setName] = useState("");
-    const [quantity, setQuantity] = useState("");
-    const [category, setCategory] = useState("produce");
+    useEffect(() => {
+        setItems(itemsData);
+    }, []);
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-
-        const newItem = {
-            id: Date.now(),  // Generate a unique ID
-            name,
-            quantity,
-            category,
-        };
-
-        onAddItem(newItem);  // Call the function passed via props
-
-        // Reset form fields
-        setName("");
-        setQuantity("");
-        setCategory("produce");
+    const handleAddItem = (newItem) => {
+        setItems((prevItems) => [...prevItems, newItem]);
     };
 
     return (
-        <form onSubmit={handleSubmit} className="space-y-4 p-4 border rounded shadow">
-            <h2 className="text-lg font-semibold">Add New Item</h2>
+        <div className="p-6">
+            <h1 className="text-2xl font-bold mb-4">Shopping List App</h1>
 
-            <input
-                type="text"
-                placeholder="Item Name"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                required
-                className="border p-2 w-full rounded"
-            />
+            <NewItem onAddItem={handleAddItem} />
 
-            <input
-                type="number"
-                placeholder="Quantity"
-                value={quantity}
-                onChange={(e) => setQuantity(e.target.value)}
-                required
-                className="border p-2 w-full rounded"
-            />
-
-            <select
-                value={category}
-                onChange={(e) => setCategory(e.target.value)}
-                className="border p-2 w-full rounded"
-            >
-                <option value="produce">Produce</option>
-                <option value="dairy">Dairy</option>
-                <option value="bakery">Bakery</option>
-                <option value="meat">Meat</option>
-                <option value="frozen">Frozen</option>
-                <option value="snacks">Snacks</option>
-                <option value="beverages">Beverages</option>
-            </select>
-
-            <button type="submit" className="bg-blue-500 text-white px-4 py-2 rounded">
-                Add Item
-            </button>
-        </form>
+            <ItemList items={items} />
+        </div>
     );
 }
