@@ -1,28 +1,69 @@
 "use client";
 
-import { useState } from "react";
-import itemsData from "./items.json";
-import NewItem from "./NewItem";
-import ItemList from "./ItemList";
+import React, { useState } from "react";
 
-export default function ShoppingList() {
-    const [items, setItems] = useState(itemsData);
+export default function NewItem({ onAddItem }) {
+    const [name, setName] = useState("");
+    const [quantity, setQuantity] = useState("");
+    const [category, setCategory] = useState("produce");
 
-    const handleAddItem = (newItem) => {
-        setItems([...items, newItem]);
+    const handleSubmit = (e) => {
+        e.preventDefault();
+
+        const newItem = {
+            id: Date.now(),  // Generate a unique ID
+            name,
+            quantity,
+            category,
+        };
+
+        onAddItem(newItem);  // Call the function passed via props
+
+        // Reset form fields
+        setName("");
+        setQuantity("");
+        setCategory("produce");
     };
 
-
     return (
-        <div className="p-4">
-            <h1 className="text-2xl font-bold mb-4">Shopping List</h1>
-            <NewItem onAddItem={handleAddItem} />
-            <ItemList items={items} />
-        </div>
+        <form onSubmit={handleSubmit} className="space-y-4 p-4 border rounded shadow">
+            <h2 className="text-lg font-semibold">Add New Item</h2>
+
+            <input
+                type="text"
+                placeholder="Item Name"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                required
+                className="border p-2 w-full rounded"
+            />
+
+            <input
+                type="number"
+                placeholder="Quantity"
+                value={quantity}
+                onChange={(e) => setQuantity(e.target.value)}
+                required
+                className="border p-2 w-full rounded"
+            />
+
+            <select
+                value={category}
+                onChange={(e) => setCategory(e.target.value)}
+                className="border p-2 w-full rounded"
+            >
+                <option value="produce">Produce</option>
+                <option value="dairy">Dairy</option>
+                <option value="bakery">Bakery</option>
+                <option value="meat">Meat</option>
+                <option value="frozen">Frozen</option>
+                <option value="snacks">Snacks</option>
+                <option value="beverages">Beverages</option>
+            </select>
+
+            <button type="submit" className="bg-blue-500 text-white px-4 py-2 rounded">
+                Add Item
+            </button>
+        </form>
     );
-};
-
-export default function Page() {
-
-};
-
+}

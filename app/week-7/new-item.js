@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
 export default function NewItem({ onAddItem }) {
   const [name, setName] = useState("");
@@ -11,18 +11,17 @@ export default function NewItem({ onAddItem }) {
     e.preventDefault();
 
     const newItem = {
-      name: name,
-      quantity: quantity,
-      category: category,
+      name,
+      quantity,
+      category,
     };
 
     onAddItem(newItem);
-
+    // Reset form fields
     setName("");
     setQuantity("");
     setCategory("produce");
   };
-
 
   return (
     <form onSubmit={handleSubmit} className="space-y-4 p-4 border rounded shadow">
@@ -65,4 +64,4 @@ export default function NewItem({ onAddItem }) {
       </button>
     </form>
   );
-};
+}
