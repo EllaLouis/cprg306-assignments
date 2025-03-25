@@ -2,7 +2,6 @@
 import { useState, useEffect } from "react";
 import NewItem from "./new-item";
 import ItemList from "./item-list";
-import mealIdeas from "./meal-ideas";
 import itemsData from "./items.json";
 
 export default function Page() {
@@ -17,23 +16,18 @@ export default function Page() {
         setItems((prevItems) => [...prevItems, newItem]);
     };
 
-    const handleItemSelect = (item) => {
-        const cleanedItemName = item.name
-            .split(",")[0] // Get the part before the comma
-            .replace(/[^\w\s]/g, "")  // Remove emojis and non-alphanumeric characters
-            .trim(); // Trim extra spaces
-
-        setSelectedItemName(cleanedItemName); // Set the cleaned name
+    const handleItemSelect = (itemName) => {
+        const cleanedItemName = itemName.replace(/[^a-zA-Z ]/g, "").trim();
+        setSelectedItemName(cleanedItemName);
     };
-
     return (
-        <div className="flex space-x-8 p-8">
-            <div className="flex-1">
+        <div className="p-6 flex">
+            <div className="w-1/2">
                 <NewItem onAddItem={handleAddItem} />
                 <ItemList items={items} onItemSelect={handleItemSelect} />
             </div>
+            <div className="w-1/2">
 
-            <div className="flex-1">
                 <MealIdeas ingredient={selectedItemName} />
             </div>
         </div>
