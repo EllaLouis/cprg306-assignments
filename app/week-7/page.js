@@ -17,10 +17,12 @@ export default function Page() {
         setItems((prevItems) => [...prevItems, newItem]);
     };
 
-    const handleItemSelect = (itemName) => {
-        const cleanedItemName = itemName.replace(/[^a-zA-Z ]/g, "").trim();
+    const handleItemSelect = (item) => {
+        if (!item || !item.name) return;
+        const cleanedItemName = item.name.replace(/[^a-zA-Z ]/g, "").trim();
         setSelectedItemName(cleanedItemName);
     };
+
     return (
         <div className="p-6 flex">
             <div className="w-1/2">
@@ -28,7 +30,6 @@ export default function Page() {
                 <ItemList items={items} onItemSelect={handleItemSelect} />
             </div>
             <div className="w-1/2">
-
                 <MealIdeas ingredient={selectedItemName} />
             </div>
         </div>
