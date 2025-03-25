@@ -1,15 +1,14 @@
 "use client";
-import { useState } from "react";
-import Item from "./item";
 
-export default function ItemList({ items = [], onItemSelect }) {
+import React, { useState } from "react";
+import Item from "./item.js";
+import items from "./items.json";
+
+export default function ShoppingList() {
     const [sortBy, setSortBy] = useState("name");
 
-    if (!Array.isArray(items) || items.length === 0) {
-        return <p className="p-4">Your shopping list is empty.</p>;
-    }
-
     let sortedItems;
+
     if (sortBy === "group") {
         const grouped = items.reduce((acc, item) => {
             acc[item.category] = acc[item.category] || [];
@@ -21,9 +20,10 @@ export default function ItemList({ items = [], onItemSelect }) {
             .sort(([a], [b]) => a.localeCompare(b))
             .map(([category, items]) => ({
                 category,
-                items: [...items].sort((a, b) => a.name.localeCompare(b.name)),
+                items: items.sort((a, b) => a.name.localeCompare(b.name)),
             }));
     } else {
+
         sortedItems = [...items].sort((a, b) => a[sortBy].localeCompare(b[sortBy]));
     }
 
@@ -45,20 +45,17 @@ export default function ItemList({ items = [], onItemSelect }) {
                 ))}
             </div>
 
+            {/* Display Items */}
             {sortBy === "group"
                 ? sortedItems.map(({ category, items }) => (
                     <div key={category}>
                         <h2 className="text-lg font-semibold capitalize mt-4">{category}</h2>
-                        <ul>
-                            {items.map((item) => (
-                                <Item key={item.id} {...item} onSelect={() => onItemSelect(item)} />
-                            ))}
-                        </ul>
+                        <ul>{items.map((item) => <Item key={item.id} {...item} />)}</ul>
                     </div>
                 ))
-                : sortedItems.map((item) => (
-                    <Item key={item.id} {...item} onSelect={() => onItemSelect(item)} />
-                ))}
+                : sortedItems.map((item) => <Item key={item.id} {...item} />)}
         </div>
     );
 }
+
+

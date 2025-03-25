@@ -1,11 +1,13 @@
 "use client";
 import { useState, useEffect } from "react";
-import NewItem from "./new-item"; // Import NewItem component
-import ItemList from "./item-list"; // Import ItemList component
-import itemsData from "./items.json"; // Import items.json as itemsData
+import NewItem from "./new-item";
+import ItemList from "./item-list";
+import MealIdeas from "./meal-ideas";
+import itemsData from "./items.json";
 
 export default function Page() {
     const [items, setItems] = useState([]);
+    const [selectedItemName, setSelectedItemName] = useState("");
 
     useEffect(() => {
         setItems(itemsData);
@@ -15,13 +17,25 @@ export default function Page() {
         setItems((prevItems) => [...prevItems, newItem]);
     };
 
+    const handleItemSelect = (item) => {
+        const cleanedItemName = item.name
+            .split(",")[0] // Get the part before the comma
+            .replace(/[^\w\s]/g, "")  // Remove emojis and non-alphanumeric characters
+            .trim(); // Trim extra spaces
+
+        setSelectedItemName(cleanedItemName); // Set the cleaned name
+    };
+
     return (
-        <div className="p-6">
-            <h1 className="text-2xl font-bold mb-4">Shopping List App</h1>
+        <div className="flex space-x-8 p-8">
+            <div className="flex-1">
+                <NewItem onAddItem={handleAddItem} />
+                <ItemList items={items} onItemSelect={handleItemSelect} />
+            </div>
 
-            <NewItem onAddItem={handleAddItem} />
-
-            <ItemList items={items} />
+            <div className="flex-1">
+                <MealIdeas ingredient={selectedItemName} />
+            </div>
         </div>
     );
 }
