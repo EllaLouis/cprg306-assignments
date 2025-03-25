@@ -5,7 +5,8 @@ import React from "react";
 export default function Item({ id, name, quantity, category, onSelect }) {
     return (
         <li
-            onClick={() => onSelect({ id, name, quantity, category })}  // Pass full item object
+            onClick={() =>
+                onSelect({ id, name, quantity, category })}  // Pass full item object
             className="p-2 border-b cursor-pointer hover:bg-gray-100"
         >
             <span className="font-semibold">{name}</span> - {quantity} ({category})
