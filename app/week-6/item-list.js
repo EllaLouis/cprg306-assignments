@@ -1,8 +1,7 @@
 "use client";
 import { useState } from "react";
 import Item from "./item";
-
-export default function ItemList({ items = [], onItemSelect }) {
+export default function ItemList({ items = [], onItemSelect }) {  //  Accepts onItemSelect prop
     const [sortBy, setSortBy] = useState("name");
 
     if (!Array.isArray(items) || items.length === 0) {
@@ -51,13 +50,13 @@ export default function ItemList({ items = [], onItemSelect }) {
                         <h2 className="text-lg font-semibold capitalize mt-4">{category}</h2>
                         <ul>
                             {items.map((item) => (
-                                <Item key={item.id} {...item} onSelect={() => onItemSelect(item)} />
+                                <Item key={item.id} {...item} onSelect={onItemSelect} />
                             ))}
                         </ul>
                     </div>
                 ))
                 : sortedItems.map((item) => (
-                    <Item key={item.id} {...item} onSelect={() => onItemSelect(item)} />
+                    <Item key={item.id} {...item} onSelect={onItemSelect} />
                 ))}
         </div>
     );
