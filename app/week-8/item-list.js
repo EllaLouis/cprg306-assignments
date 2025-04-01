@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import Item from "./item.js";
 import items from "./items.json";
 
-export default function ShoppingList() {
+export default function ShoppingList({ onItemSelect }) {
     const [sortBy, setSortBy] = useState("name");
 
     let sortedItems;
@@ -23,7 +23,6 @@ export default function ShoppingList() {
                 items: items.sort((a, b) => a.name.localeCompare(b.name)),
             }));
     } else {
-
         sortedItems = [...items].sort((a, b) => a[sortBy].localeCompare(b[sortBy]));
     }
 
@@ -50,12 +49,16 @@ export default function ShoppingList() {
                 ? sortedItems.map(({ category, items }) => (
                     <div key={category}>
                         <h2 className="text-lg font-semibold capitalize mt-4">{category}</h2>
-                        <ul>{items.map((item) => <Item key={item.id} {...item} />)}</ul>
+                        <ul>
+                            {items.map((item) => (
+                                <Item key={item.id} {...item} onSelect={onItemSelect} />
+                            ))}
+                        </ul>
                     </div>
                 ))
-                : sortedItems.map((item) => <Item key={item.id} {...item} />)}
+                : sortedItems.map((item) => (
+                    <Item key={item.id} {...item} onSelect={onItemSelect} />
+                ))}
         </div>
     );
 }
-
-
