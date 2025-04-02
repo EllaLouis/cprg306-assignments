@@ -2,7 +2,6 @@
 
 import React, { useState } from "react";
 import Item from "./item.js";
-import items from "./items.json";
 
 export default function ShoppingList() {
     const [sortBy, setSortBy] = useState("name");
