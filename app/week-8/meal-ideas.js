@@ -30,7 +30,8 @@ export default function MealIdeas({ ingredient }) {
     return (
         <div className="p-4 border rounded shadow">
             <h2 className="text-lg font-semibold mb-4">
-                Meal Ideas for {ingredient || "..."}</h2>
+                Meal Ideas for {ingredient || "..."}
+            </h2>
             {meals.length > 0 ? (
                 <ul className="list-disc pl-5">
                     {meals.map((meal) => (
@@ -40,8 +41,8 @@ export default function MealIdeas({ ingredient }) {
                     ))}
                 </ul>
             ) : (
-                <p>No meal ideas found.</p>
+                <p className="text-red-500">No meal ideas found for "{ingredient}".</p>
             )}
         </div>
-    );
+    )
 }
