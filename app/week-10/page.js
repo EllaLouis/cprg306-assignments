@@ -9,7 +9,7 @@ export default function Page() {
 
     useEffect(() => {
         if (user) {
-            router.push("/week-9/shopping-list"); // Redirect to shopping list after login
+            router.push("/week-10/shopping-list");
         }
     }, [user, router]);
 
