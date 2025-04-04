@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import NewItem from "./new-item";
 import ItemList from "./item-list";
 import MealIdeas from "./meal-ideas";
-import { getItems, addItem } from "./shopping-list-service";
+import { getItems, addItem } from "../../services/shopping-list-service";
 import { useUserAuth } from "../../_utils/auth-context";
 
 export default function ShoppingListPage() {
