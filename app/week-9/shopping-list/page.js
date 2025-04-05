@@ -17,8 +17,8 @@ export default function Page() {
         setItems((prevItems) => [...prevItems, newItem]);
     };
 
-    const handleItemSelect = (item) => {  //  Receives full item object
-        if (!item || !item.name) return;  //  Prevent errors
+    const handleItemSelect = (item) => {
+        if (!item || !item.name) return;
         const cleanedItemName = item.name.replace(/[^a-zA-Z ]/g, "").trim();
         setSelectedItemName(cleanedItemName);
     };
