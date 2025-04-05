@@ -1,17 +1,22 @@
 "use client";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useUserAuth } from "./_utils/auth-context";
 
 export default function Page() {
     const { user, gitHubSignIn } = useUserAuth();
     const router = useRouter();
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
+        setLoading(false);
+
         if (user) {
             router.push("/week-10/shopping-list");
         }
     }, [user, router]);
+
+    if (loading) return <p>Loading...</p>;
 
     return (
         <div className="p-6 text-center">
@@ -27,3 +32,4 @@ export default function Page() {
         </div>
     );
 }
+
