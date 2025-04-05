@@ -1,9 +1,8 @@
 "use client";
-
-import React, { useState } from "react";
+import { useState } from "react";
 import Item from "./item.js";
 
-export default function ShoppingList() {
+export default function ItemList({ items = [], onItemSelect }) {
     const [sortBy, setSortBy] = useState("name");
 
     let sortedItems;
@@ -19,18 +18,18 @@ export default function ShoppingList() {
             .sort(([a], [b]) => a.localeCompare(b))
             .map(([category, items]) => ({
                 category,
-                items: items.sort((a, b) => a.name.localeCompare(b.name)),
+                items: [...items].sort((a, b) => a.name.localeCompare(b.name)),
             }));
     } else {
-
-        sortedItems = [...items].sort((a, b) => a[sortBy].localeCompare(b[sortBy]));
+        sortedItems = [...items].sort((a, b) =>
+            a[sortBy].localeCompare(b[sortBy])
+        );
     }
 
     return (
         <div className="p-4">
             <h1 className="text-xl font-bold mb-4">Shopping List</h1>
 
-            {/* Sorting Buttons */}
             <div className="space-x-2 mb-4">
                 {["name", "category", "group"].map((type) => (
                     <button
@@ -44,17 +43,21 @@ export default function ShoppingList() {
                 ))}
             </div>
 
-            {/* Display Items */}
             {sortBy === "group"
                 ? sortedItems.map(({ category, items }) => (
                     <div key={category}>
                         <h2 className="text-lg font-semibold capitalize mt-4">{category}</h2>
-                        <ul>{items.map((item) => <Item key={item.id} {...item} />)}</ul>
+                        <ul>
+                            {items.map((item) => (
+                                <Item key={item.id} {...item} onSelect={onItemSelect} />
+                            ))}
+                        </ul>
                     </div>
                 ))
-                : sortedItems.map((item) => <Item key={item.id} {...item} />)}
+                : sortedItems.map((item) => (
+                    <Item key={item.id} {...item} onSelect={onItemSelect} />
+                ))}
         </div>
     );
 }
-
 
