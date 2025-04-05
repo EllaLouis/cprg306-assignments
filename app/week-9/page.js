@@ -29,5 +29,4 @@ export default function Week9LandingPage() {
     );
 }
 
-
 export const dynamic = "force-dynamic";
