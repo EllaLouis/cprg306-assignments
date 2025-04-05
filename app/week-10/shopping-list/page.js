@@ -4,7 +4,7 @@ import NewItem from "./new-item.js";
 import ItemList from "./item-list.js";
 import MealIdeas from "./meal-ideas.js";
 import { getItems, addItem } from "../_services/shopping-list-service";
-import { useUserAuth } from "../_utils/auth-context";
+import { useUserAuth } from "./_utils/auth-context";
 
 export default function ShoppingListPage() {
     const { user } = useUserAuth();

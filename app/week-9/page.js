@@ -29,5 +29,5 @@ export default function Week9LandingPage() {
     );
 }
 
-// ✅ Prevent server-side rendering
+//  Prevent server-side rendering
 export const dynamic = "force-dynamic";
