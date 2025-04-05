@@ -9,7 +9,7 @@ export default function Page() {
 
     useEffect(() => {
         if (user) {
-            router.push("/week-9/shopping-list"); // Redirect to shopping list after login
+            router.push("/week-9/shopping-list");
         }
     }, [user, router]);
 
@@ -27,3 +27,5 @@ export default function Page() {
         </div>
     );
 }
+
+export const dynamic = "force-dynamic";
