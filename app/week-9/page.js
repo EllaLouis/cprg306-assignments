@@ -2,7 +2,7 @@
 
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { useUserAuth } from "./_utils/auth-context";
+import { useUserAuth } from "../_utils/auth-context";
 
 export default function Week9LandingPage() {
     const { user, gitHubSignIn } = useUserAuth();
@@ -10,7 +10,7 @@ export default function Week9LandingPage() {
 
     useEffect(() => {
         if (user) {
-            router.push("/week-9/shopping-list"); // Redirect after login
+            router.push("/week-9/shopping-list");
         }
     }, [user]);
 
@@ -29,5 +29,5 @@ export default function Week9LandingPage() {
     );
 }
 
-// 🔐 Tells Next.js: DO NOT pre-render or server-render this page
+// ✅ Prevent server-side rendering
 export const dynamic = "force-dynamic";
