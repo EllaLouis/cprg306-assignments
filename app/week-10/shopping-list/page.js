@@ -50,3 +50,5 @@ export default function ShoppingListPage() {
         </div>
     );
 }
+
+export const dynamic = "force-dynamic";
