@@ -23,3 +23,4 @@ export const getItems = async (userId) => {
 // Add an item for a user
 export const addItem = async (userId, item) =>
     (await addDoc(collection(db, "users", userId, "items"), item)).id;
+console.log("FIREBASE API KEY:", process.env.NEXT_PUBLIC_FIREBASE_API_KEY);
