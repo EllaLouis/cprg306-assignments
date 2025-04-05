@@ -1,17 +1,18 @@
 "use client";
+
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { useUserAuth } from "./_utils/auth-context";
 
-export default function Page() {
+export default function Week9LandingPage() {
     const { user, gitHubSignIn } = useUserAuth();
     const router = useRouter();
 
     useEffect(() => {
         if (user) {
-            router.push("/week-9/shopping-list");
+            router.push("/week-9/shopping-list"); // Redirect after login
         }
-    }, [user, router]);
+    }, [user]);
 
     return (
         <div className="p-6 text-center">
@@ -28,4 +29,5 @@ export default function Page() {
     );
 }
 
+// 🔐 Tells Next.js: DO NOT pre-render or server-render this page
 export const dynamic = "force-dynamic";
