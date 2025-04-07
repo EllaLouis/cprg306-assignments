@@ -14,9 +14,14 @@ const AuthContext = createContext();
 export const AuthContextProvider = ({ children }) => {
     const [user, setUser] = useState(null);
 
-    const gitHubSignIn = () => {
+    const gitHubSignIn = async () => {
         const provider = new GithubAuthProvider();
-        return signInWithPopup(auth, provider);
+        try {
+            await signInWithPopup(auth, provider);
+        } catch (error) {
+            console.error("GitHub login error:", error);
+            alert("Login failed. Check the console for details.");
+        }
     };
 
     const firebaseSignOut = () => {
@@ -28,7 +33,7 @@ export const AuthContextProvider = ({ children }) => {
             setUser(currentUser);
         });
         return () => unsubscribe();
-    }, [user]);
+    }, []);
 
     return (
         <AuthContext.Provider value={{ user, gitHubSignIn, firebaseSignOut }}>
