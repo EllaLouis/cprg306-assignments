@@ -24,7 +24,6 @@ export default function MealIdeas({ ingredient }) {
         };
 
         loadMealIdeas();
-
     }, [ingredient]);
 
     return (
@@ -44,5 +43,6 @@ export default function MealIdeas({ ingredient }) {
                 <p className="text-red-500">No meal ideas found for "{ingredient}".</p>
             )}
         </div>
-    )
+    );
 }
+

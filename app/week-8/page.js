@@ -18,7 +18,7 @@ export default function Page() {
     };
 
     const handleItemSelect = (item) => {
-        if (!item || !item.name) return;  // Prevent errors if item is not available
+        if (!item || !item.name) return;
         const cleanedItemName = item.name.replace(/[^a-zA-Z ]/g, "").trim();
         setSelectedItemName(cleanedItemName);
     };
@@ -35,4 +35,3 @@ export default function Page() {
         </div>
     );
 }
-

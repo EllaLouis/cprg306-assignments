@@ -30,7 +30,6 @@ export default function ShoppingList({ onItemSelect }) {
         <div className="p-4">
             <h1 className="text-xl font-bold mb-4">Shopping List</h1>
 
-            {/* Sorting Buttons */}
             <div className="space-x-2 mb-4">
                 {["name", "category", "group"].map((type) => (
                     <button
@@ -44,7 +43,6 @@ export default function ShoppingList({ onItemSelect }) {
                 ))}
             </div>
 
-            {/* Display Items */}
             {sortBy === "group"
                 ? sortedItems.map(({ category, items }) => (
                     <div key={category}>
