@@ -4,7 +4,7 @@ import { collection, getDocs, addDoc, deleteDoc, doc, query, where } from "fireb
 export async function getItems(userId) {
     if (!userId) return [];
 
-    const q = query(collection(db, "users", userId, "items")); // Query user's items collection
+    const q = query(collection(db, "users", userId, "items"));
     const querySnapshot = await getDocs(q);
 
     const items = querySnapshot.docs.map(doc => ({
